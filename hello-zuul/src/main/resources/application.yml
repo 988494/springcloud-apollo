@@ -1,0 +1,23 @@
+
+server:
+  port: 10000
+spring:
+  application:
+    name: hello-zuul
+eureka:
+  client:
+    register-with-eureka: false #网关不用注册到注册中心中，因为没其他微服务调用他
+    fetch-registry: true #这个必须是true fetchRegistry打开才能从eureka拉取服务列表
+    service-url:
+      defaultZone: http://localhost:7000/eureka/
+zuul:
+  ignored-services: "*" #意味着http请求比如 "/myusers/101" 将跳转到 "/101"
+#  routes:
+#    hello-consumer-openfeign:
+#      path: /api/**
+#      serviceId: hello-consumer-openfeign
+#  host:
+#    connect-timeout-millis: 3000
+#    socket-timeout-millis: 3000
+
+
